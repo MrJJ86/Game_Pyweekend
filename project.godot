@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Game_Pyweekend"
+run/main_scene="res://scenes/start_menu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
