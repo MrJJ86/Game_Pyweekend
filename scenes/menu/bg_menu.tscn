@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://chondrxie2hod"]
 
-[ext_resource type="Texture2D" uid="uid://efbl6fyskh20" path="res://assets/sprites/background_menu.png" id="1_0afcr"]
-[ext_resource type="Script" path="res://scripts/bg_menu.gd" id="1_ep28a"]
-[ext_resource type="Texture2D" uid="uid://bbko78hkri0xx" path="res://assets/sprites/Moon.png" id="3_oe5lr"]
-[ext_resource type="Texture2D" uid="uid://uncfklp1b6ni" path="res://assets/sprites/asteroides_pequeno.png" id="4_pjdju"]
-[ext_resource type="Texture2D" uid="uid://4rsqclotx1wf" path="res://assets/sprites/Planet.png" id="5_8ysp2"]
-[ext_resource type="Texture2D" uid="uid://dag8ld88m1qqk" path="res://assets/sprites/asteroide_grande.png" id="6_k7bo3"]
+[ext_resource type="Script" path="res://scripts/menu/bg_menu.gd" id="1_8j613"]
+[ext_resource type="Texture2D" uid="uid://efbl6fyskh20" path="res://assets/sprites/background/initial_background/background_menu.png" id="2_1gf62"]
+[ext_resource type="Texture2D" uid="uid://bbko78hkri0xx" path="res://assets/sprites/background/initial_background/Moon.png" id="3_bfllq"]
+[ext_resource type="Texture2D" uid="uid://uncfklp1b6ni" path="res://assets/sprites/background/initial_background/asteroides_pequeno.png" id="4_4nv6l"]
+[ext_resource type="Texture2D" uid="uid://4rsqclotx1wf" path="res://assets/sprites/background/initial_background/Planet.png" id="5_bffhm"]
+[ext_resource type="Texture2D" uid="uid://dag8ld88m1qqk" path="res://assets/sprites/background/initial_background/asteroide_grande.png" id="6_7x40l"]
 
 [node name="bg_menu" type="ParallaxBackground"]
-script = ExtResource("1_ep28a")
+script = ExtResource("1_8j613")
 
 [node name="space" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.2, 0.2)
@@ -17,7 +17,7 @@ motion_mirroring = Vector2(1152, 655)
 [node name="stars" type="Sprite2D" parent="space"]
 texture_filter = 1
 texture_repeat = 3
-texture = ExtResource("1_0afcr")
+texture = ExtResource("2_1gf62")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1800, 1200)
@@ -31,7 +31,7 @@ motion_mirroring = Vector2(1152, 640)
 texture_filter = 1
 position = Vector2(44, 549)
 scale = Vector2(1.40625, 1.40625)
-texture = ExtResource("3_oe5lr")
+texture = ExtResource("3_bfllq")
 centered = false
 
 [node name="moon2" type="Sprite2D" parent="moons"]
@@ -39,16 +39,14 @@ texture_filter = 1
 texture_repeat = 3
 position = Vector2(457, 130)
 scale = Vector2(1.78125, 1.78125)
-texture = ExtResource("3_oe5lr")
-region_enabled = true
+texture = ExtResource("3_bfllq")
 
 [node name="moon3" type="Sprite2D" parent="moons"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(1037, 496)
 scale = Vector2(3.52002, 3.52002)
-texture = ExtResource("3_oe5lr")
-region_enabled = true
+texture = ExtResource("3_bfllq")
 
 [node name="asteroid_small" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.7, 0.7)
@@ -59,42 +57,42 @@ texture_filter = 1
 texture_repeat = 3
 position = Vector2(1070, 408)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="asteroid_s2" type="Sprite2D" parent="asteroid_small"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(715, 403)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="asteroid_s3" type="Sprite2D" parent="asteroid_small"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(729, 142)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="asteroid_s4" type="Sprite2D" parent="asteroid_small"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(430, 297)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="asteroid_s5" type="Sprite2D" parent="asteroid_small"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(137, 228)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="asteroid_s6" type="Sprite2D" parent="asteroid_small"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(120, 525)
 scale = Vector2(1.39063, 1.39063)
-texture = ExtResource("4_pjdju")
+texture = ExtResource("4_4nv6l")
 
 [node name="planets" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.3, 0.3)
@@ -105,27 +103,27 @@ texture_filter = 1
 texture_repeat = 3
 position = Vector2(518, 518)
 scale = Vector2(3.51563, 3.51563)
-texture = ExtResource("5_8ysp2")
+texture = ExtResource("5_bffhm")
 
 [node name="planet2" type="Sprite2D" parent="planets"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(880, 603)
-texture = ExtResource("5_8ysp2")
+texture = ExtResource("5_bffhm")
 
 [node name="planet3" type="Sprite2D" parent="planets"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(184, 275)
 scale = Vector2(2.375, 2.375)
-texture = ExtResource("5_8ysp2")
+texture = ExtResource("5_bffhm")
 
 [node name="planet4" type="Sprite2D" parent="planets"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(1049, 111)
 scale = Vector2(5.79688, 5.79688)
-texture = ExtResource("5_8ysp2")
+texture = ExtResource("5_bffhm")
 
 [node name="asteroid_big" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.5, 0.5)
@@ -136,25 +134,25 @@ texture_filter = 1
 texture_repeat = 3
 position = Vector2(997, 597)
 scale = Vector2(2.71875, 2.71875)
-texture = ExtResource("6_k7bo3")
+texture = ExtResource("6_7x40l")
 
 [node name="asteroid_g2" type="Sprite2D" parent="asteroid_big"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(986, 135)
 scale = Vector2(2.71875, 2.71875)
-texture = ExtResource("6_k7bo3")
+texture = ExtResource("6_7x40l")
 
 [node name="asteroid_g3" type="Sprite2D" parent="asteroid_big"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(332, 494)
 scale = Vector2(2.71875, 2.71875)
-texture = ExtResource("6_k7bo3")
+texture = ExtResource("6_7x40l")
 
 [node name="asteroid_g4" type="Sprite2D" parent="asteroid_big"]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(140, 112)
 scale = Vector2(2.71875, 2.71875)
-texture = ExtResource("6_k7bo3")
+texture = ExtResource("6_7x40l")

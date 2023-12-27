@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uncfklp1b6ni"
-path="res://.godot/imported/asteroides_pequeno.png-65c819fcbb236ab1d3987446870ffd13.ctex"
+uid="uid://cg762t0f1ysku"
+path="res://.godot/imported/background3.png-ec7e5d21a7677123bab6a006239a2fea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/asteroides_pequeno.png"
-dest_files=["res://.godot/imported/asteroides_pequeno.png-65c819fcbb236ab1d3987446870ffd13.ctex"]
+source_file="res://assets/sprites/background/game_background/background3.png"
+dest_files=["res://.godot/imported/background3.png-ec7e5d21a7677123bab6a006239a2fea.ctex"]
 
 [params]
 

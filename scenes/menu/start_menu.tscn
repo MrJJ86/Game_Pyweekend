@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctyn7opilluv"]
+[gd_scene load_steps=6 format=3 uid="uid://bo85q5ha0i5ca"]
 
-[ext_resource type="Texture2D" uid="uid://bd8w08hn5rvch" path="res://assets/sprites/titulo_prueba.png" id="1_4pnrh"]
-[ext_resource type="PackedScene" uid="uid://chondrxie2hod" path="res://scenes/bg_menu.tscn" id="2_uy8a6"]
+[ext_resource type="Script" path="res://scripts/menu/start_menu.gd" id="1_0flo4"]
+[ext_resource type="Texture2D" uid="uid://bd8w08hn5rvch" path="res://assets/sprites/background/initial_background/titulo_prueba.png" id="2_vyelk"]
+[ext_resource type="PackedScene" uid="uid://chondrxie2hod" path="res://scenes/menu/bg_menu.tscn" id="3_qyi8d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qc7s6"]
 font_size = 25
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0flo4")
 
 [node name="menu_container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,7 +42,7 @@ size_flags_vertical = 0
 use_top_left = true
 
 [node name="title" type="Sprite2D" parent="menu_container/title_container"]
-texture = ExtResource("1_4pnrh")
+texture = ExtResource("2_vyelk")
 
 [node name="bt_container" type="VBoxContainer" parent="menu_container"]
 layout_mode = 2
@@ -98,4 +100,8 @@ label_settings = SubResource("LabelSettings_b8y1w")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="bg_menu" parent="." instance=ExtResource("2_uy8a6")]
+[node name="bg_menu" parent="." instance=ExtResource("3_qyi8d")]
+
+[connection signal="pressed" from="menu_container/bt_container/bt_start" to="." method="_on_bt_start_pressed"]
+[connection signal="pressed" from="menu_container/bt_container/bt_settings" to="." method="_on_bt_settings_pressed"]
+[connection signal="pressed" from="menu_container/bt_container/bt_exit" to="." method="_on_bt_exit_pressed"]

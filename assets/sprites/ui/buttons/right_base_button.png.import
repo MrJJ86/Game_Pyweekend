@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4rsqclotx1wf"
-path="res://.godot/imported/Planet.png-05d9ea01957454d3a2c746232a738bb7.ctex"
+uid="uid://bd23q2q2etk3o"
+path="res://.godot/imported/right_base_button.png-243665e84e4baa99dc3510efc084b015.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Planet.png"
-dest_files=["res://.godot/imported/Planet.png-05d9ea01957454d3a2c746232a738bb7.ctex"]
+source_file="res://assets/sprites/ui/buttons/right_base_button.png"
+dest_files=["res://.godot/imported/right_base_button.png-243665e84e4baa99dc3510efc084b015.ctex"]
 
 [params]
 
