@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo85q5ha0i5ca"]
+
+[ext_resource type="Script" path="res://scripts/menu/start_menu.gd" id="1_0flo4"]
+[ext_resource type="Texture2D" uid="uid://bd8w08hn5rvch" path="res://assets/sprites/background/initial_background/titulo_prueba.png" id="2_vyelk"]
+[ext_resource type="PackedScene" uid="uid://chondrxie2hod" path="res://scenes/menu/bg_menu.tscn" id="3_qyi8d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qc7s6"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8y1w"]
+font_size = 25
+
+[node name="start_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0flo4")
+
+[node name="menu_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -309.0
+offset_right = 354.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="title_container" type="CenterContainer" parent="menu_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+use_top_left = true
+
+[node name="title" type="Sprite2D" parent="menu_container/title_container"]
+texture = ExtResource("2_vyelk")
+
+[node name="bt_container" type="VBoxContainer" parent="menu_container"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="bt_start" type="Button" parent="menu_container/bt_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "JUGAR"
+flat = true
+
+[node name="bt_settings" type="Button" parent="menu_container/bt_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "CONFIGURACIÓN"
+flat = true
+
+[node name="bt_exit" type="Button" parent="menu_container/bt_container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SALIR"
+flat = true
+
+[node name="credits_container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.962
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="container_dev" type="HBoxContainer" parent="credits_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="credits_container/container_dev"]
+layout_mode = 2
+text = "Desarrollado por MoonPhaser"
+label_settings = SubResource("LabelSettings_qc7s6")
+vertical_alignment = 1
+
+[node name="container_event" type="HBoxContainer" parent="credits_container"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label2" type="Label" parent="credits_container/container_event"]
+layout_mode = 2
+text = "Pyweend 13° Edición"
+label_settings = SubResource("LabelSettings_b8y1w")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="bg_menu" parent="." instance=ExtResource("3_qyi8d")]
+
+[connection signal="pressed" from="menu_container/bt_container/bt_start" to="." method="_on_bt_start_pressed"]
+[connection signal="pressed" from="menu_container/bt_container/bt_settings" to="." method="_on_bt_settings_pressed"]
+[connection signal="pressed" from="menu_container/bt_container/bt_exit" to="." method="_on_bt_exit_pressed"]

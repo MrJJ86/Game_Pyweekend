@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0wkt8wolqur0"]
+
+[ext_resource type="Script" path="res://scripts/menu/pause_menu.gd" id="1_yxca8"]
+
+[node name="pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yxca8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -151.0
+offset_right = 151.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="bt_reanudar" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Reanudar"
+
+[node name="bt_regresar" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Regresar al Inicio"
+
+[connection signal="pressed" from="Panel/VBoxContainer/bt_reanudar" to="." method="_on_bt_reanudar_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/bt_regresar" to="." method="_on_bt_regresar_pressed"]

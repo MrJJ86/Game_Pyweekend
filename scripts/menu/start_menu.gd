@@ -1,11 +1,21 @@
 extends Control
 
-var GLOBAL = "res://scripts/GLOBAL.gd"
+class_name Menu
+@export var game_manager: GameManager
 
+
+var scene: bool = false:
+	get:
+		return scene
+	set(value):
+		scene = value
+		emit_signal("change_scene", scene)
+
+signal change_scene(is_change: bool)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	game_manager.connect("toggle_game_paused", _on_bt_settings_pressed)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -17,8 +27,10 @@ func _on_bt_exit_pressed():
 
 
 func _on_bt_settings_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu/settings.tscn")
+	game_manager.game_paused = true
 
 
 func _on_bt_start_pressed():
-	pass # Replace with function body.
+	hide()
+	$bg_menu.hide()
+	scene = true
