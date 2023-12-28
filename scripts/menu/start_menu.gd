@@ -14,7 +14,7 @@ var scene: bool = false:
 signal change_scene(is_change: bool)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	game_manager.connect("toggle_game_paused", _on_bt_settings_pressed)
+	pass
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

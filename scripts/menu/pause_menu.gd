@@ -29,4 +29,5 @@ func _on_bt_reanudar_pressed():
 
 func _on_bt_regresar_pressed():
 	game_manager.game_paused = false
+	$"../../level_01/player/Camera2D".enabled = false
 	get_tree().change_scene_to_file("res://scenes/game_manager.tscn")

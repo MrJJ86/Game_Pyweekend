@@ -15,5 +15,6 @@ func _process(delta):
 func _on_change_scene(is_change: bool):
 	if is_change:
 		show()
+		$player/Camera2D.enabled = true
 	else:
 		hide()
