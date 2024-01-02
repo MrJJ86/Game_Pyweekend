@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0xdmla0t0l6n"]
+
+[ext_resource type="Texture2D" uid="uid://dr3r7fcp3fv01" path="res://assets/sprites/background/game_background/background1.png" id="1_2h8dv"]
+[ext_resource type="Script" path="res://scripts/levels/cave_background.gd" id="1_kbus3"]
+[ext_resource type="Texture2D" uid="uid://c35fpi63agm7e" path="res://assets/sprites/background/game_background/background2.png" id="2_ge7lg"]
+[ext_resource type="Texture2D" uid="uid://cg762t0f1ysku" path="res://assets/sprites/background/game_background/background3.png" id="3_6jasp"]
+
+[node name="cave_background" type="ParallaxBackground"]
+script = ExtResource("1_kbus3")
+
+[node name="base" type="ParallaxLayer" parent="."]
+position = Vector2(4000, 735)
+motion_scale = Vector2(0.4, 0.4)
+metadata/_edit_group_ = true
+
+[node name="base_sprite" type="Sprite2D" parent="base"]
+texture_repeat = 3
+position = Vector2(9500, -255)
+scale = Vector2(2, 2)
+texture = ExtResource("1_2h8dv")
+region_enabled = true
+region_rect = Rect2(0, 0, 14200, 480)
+
+[node name="base_2" type="ParallaxLayer" parent="."]
+position = Vector2(4000, 735)
+motion_scale = Vector2(0.6, 0.6)
+metadata/_edit_group_ = true
+
+[node name="base_2_sprite" type="Sprite2D" parent="base_2"]
+texture_repeat = 3
+position = Vector2(9500, -255)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ge7lg")
+region_enabled = true
+region_rect = Rect2(0, 0, 14200, 480)
+
+[node name="base_3" type="ParallaxLayer" parent="."]
+position = Vector2(4000, 735)
+motion_scale = Vector2(0.9, 0.9)
+metadata/_edit_group_ = true
+
+[node name="base_3_sprite" type="Sprite2D" parent="base_3"]
+texture_repeat = 3
+position = Vector2(9500, -255)
+scale = Vector2(2, 2)
+texture = ExtResource("3_6jasp")
+region_enabled = true
+region_rect = Rect2(0, 0, 14200, 480)

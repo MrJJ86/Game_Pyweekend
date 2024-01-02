@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm3qqk33s27qw"]
+[gd_scene load_steps=6 format=3 uid="uid://bm3qqk33s27qw"]
 
 [ext_resource type="PackedScene" uid="uid://bo85q5ha0i5ca" path="res://scenes/menu/start_menu.tscn" id="1_ivxrq"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_n8xbq"]
 [ext_resource type="PackedScene" uid="uid://b0wkt8wolqur0" path="res://scenes/menu/pause_menu.tscn" id="2_j7yvs"]
 [ext_resource type="PackedScene" uid="uid://duptw8gg1fkvr" path="res://scenes/levels/level_01/level_01.tscn" id="3_2re4r"]
+[ext_resource type="PackedScene" uid="uid://eh33to3ygoit" path="res://scenes/menu/death_menu.tscn" id="5_bphk8"]
 
 [node name="Game_manager" type="Node"]
 script = ExtResource("1_n8xbq")
 
-[node name="level_01" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3_2re4r")]
+[node name="level_01" parent="." node_paths=PackedStringArray("menu", "game_manager") instance=ExtResource("3_2re4r")]
 menu = NodePath("../CanvasLayer/start_menu")
+game_manager = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -20,4 +22,7 @@ game_manager = NodePath("../..")
 
 [node name="pause_menu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("2_j7yvs")]
 process_mode = 2
+game_manager = NodePath("../..")
+
+[node name="death_menu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("5_bphk8")]
 game_manager = NodePath("../..")

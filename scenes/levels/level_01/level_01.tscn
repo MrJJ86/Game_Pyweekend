@@ -1,14 +1,885 @@
-[gd_scene load_steps=4 format=3 uid="uid://duptw8gg1fkvr"]
+[gd_scene load_steps=44 format=3 uid="uid://duptw8gg1fkvr"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_01.gd" id="1_rp4ey"]
 [ext_resource type="PackedScene" uid="uid://0tvjnrtm1gev" path="res://scenes/entities/player/player.tscn" id="2_ckwy3"]
 [ext_resource type="PackedScene" uid="uid://cjnxooghgtrsi" path="res://scenes/levels/level_01/tiles/tile_level_01.tscn" id="2_n5ujf"]
+[ext_resource type="PackedScene" uid="uid://b0xdmla0t0l6n" path="res://scenes/levels/level_01/tiles/cave_background.tscn" id="4_c36ih"]
+[ext_resource type="PackedScene" uid="uid://dalcgos3jxuvc" path="res://scenes/levels/checkpoint.tscn" id="5_052yb"]
+[ext_resource type="PackedScene" uid="uid://brn7ls1mhpl3a" path="res://scenes/levels/objects/moving_platform.tscn" id="6_5tati"]
+[ext_resource type="PackedScene" uid="uid://b1pid6jg4dr4p" path="res://scenes/levels/objects/moving_saw_blade.tscn" id="7_dauv6"]
+[ext_resource type="PackedScene" uid="uid://xes6uhbdqx01" path="res://scenes/levels/objects/moving_pillar.tscn" id="7_w3drr"]
+[ext_resource type="Curve2D" uid="uid://duy1vde1jlx7h" path="res://assets/gd_items/moving_pillars_set_1_curve.tres" id="8_vdm3k"]
+[ext_resource type="Curve2D" uid="uid://bh2kyxantp8vr" path="res://assets/gd_items/moving_pillars_set_2_curve.tres" id="10_swnn7"]
 
-[node name="level_01" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lxkg"]
+size = Vector2(1993.5, 43.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipypf"]
+size = Vector2(21.25, 167.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yd6n"]
+size = Vector2(175.5, 53.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m87x0"]
+size = Vector2(534.25, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1my3u"]
+size = Vector2(55, 117.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x11jn"]
+size = Vector2(334.75, 22.4375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kklxu"]
+size = Vector2(1700.5, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tlfo"]
+size = Vector2(23, 107)
+
+[sub_resource type="Curve2D" id="Curve2D_du06w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 5239.75, 360, 0, 0, 0, 0, 5239.75, 87.75)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_181dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ih2xe"]
+resource_name = "down"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y648s"]
+resource_name = "up"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ravwd"]
+_data = {
+"RESET": SubResource("Animation_181dn"),
+"down": SubResource("Animation_ih2xe"),
+"up": SubResource("Animation_y648s")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l411t"]
+size = Vector2(34.25, 302)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3x64"]
+size = Vector2(343, 21)
+
+[sub_resource type="Curve2D" id="Curve2D_pm0oc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2644.75, 381.75, 0, 0, 0, 0, 2645, 439.25, 0, 0, 0, 0, 2578.25, 439.5, -36.9994, 2.69087, 36.9994, -2.69087, 2725.75, 439.75, -2.8562, -2.68426, 2.8562, 2.68426, 2849.25, 368.5, 60.7855, -58.1427, -60.7855, 58.1427, 2874.5, 459.5, -30.3883, -8.31121, 30.3883, 8.31121, 2849, 543.5, -65.6195, 0.565685, 65.6195, -0.565685, 3056, 541.5, 0, 0, 0, 0, 3162.5, 567.5)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_jdc4n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2585.5, 548, 0, 0, 0, 0, 2687.34, 545.295, 0, 0, 0, 0, 2793, 547.5)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_3gyut"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -62.5726, -140.276, 0, 0, 0, 0, 25.8412, -139.522, 0, 0, 0, 0, 81.9346, -139.88)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_bql4g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -41.974, -258.437, 0, 0, 0, 0, 110.777, -258.853)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_rt2t8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("path_platform_2/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("path_platform_3/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_saw_blade/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moving_saw_blade2/PathFollow2D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("moving_saw_blade3/PathFollow2D:progress_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_pjrrd"]
+resource_name = "obstacule"
+length = 25.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("path_platform_2/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 21.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("path_platform_3/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6, 10, 16, 22),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_saw_blade/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 5, 8.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moving_saw_blade2/PathFollow2D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("moving_saw_blade3/PathFollow2D:progress_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 6, 8, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0, 0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d8fhp"]
+_data = {
+"RESET": SubResource("Animation_rt2t8"),
+"obstacule": SubResource("Animation_pjrrd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h8sv"]
+size = Vector2(61.375, 54.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b10ge"]
+size = Vector2(91.3125, 44.625)
+
+[sub_resource type="Animation" id="Animation_dwt7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("moving_pillar_1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("moving_pillar_2/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_pillar_3/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moving_pillar_4/PathFollow2D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_uojer"]
+resource_name = "pillars_set_1"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("moving_pillar_1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("moving_pillar_2/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_pillar_3/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.25, 1.0, 0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moving_pillar_4/PathFollow2D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.25, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7w85"]
+_data = {
+"RESET": SubResource("Animation_dwt7s"),
+"pillars_set_1": SubResource("Animation_uojer")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b33mg"]
+size = Vector2(675.25, 66.625)
+
+[sub_resource type="Animation" id="Animation_edfrw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("moving_pillar_5/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("moving_pillar_6/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_pillar_7/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_001qo"]
+resource_name = "pillars_set_2"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("moving_pillar_5/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("moving_pillar_6/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("moving_pillar_7/PathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dir8i"]
+_data = {
+"RESET": SubResource("Animation_edfrw"),
+"pillars_set_2": SubResource("Animation_001qo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_macb8"]
+size = Vector2(269.75, 498.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2vv1"]
+radius = 34.2062
+
+[node name="level_01" type="Node2D" node_paths=PackedStringArray("player")]
 scale = Vector2(4, 4)
 script = ExtResource("1_rp4ey")
+player = NodePath("player")
 
 [node name="tile_level_01" parent="." instance=ExtResource("2_n5ujf")]
 
 [node name="player" parent="." instance=ExtResource("2_ckwy3")]
-position = Vector2(207.5, 501.75)
+z_index = 2
+position = Vector2(96.5, 168.75)
+collision_layer = 27
+collision_mask = 27
+
+[node name="backgrounds" type="CanvasGroup" parent="."]
+
+[node name="cave_background" parent="backgrounds" instance=ExtResource("4_c36ih")]
+
+[node name="cave_background2" parent="backgrounds" instance=ExtResource("4_c36ih")]
+offset = Vector2(0, -955)
+transform = Transform2D(1, 0, 0, 1, 0, -955)
+scroll_ignore_camera_zoom = true
+
+[node name="cave_background3" parent="backgrounds" instance=ExtResource("4_c36ih")]
+offset = Vector2(0, -1910)
+transform = Transform2D(1, 0, 0, 1, 0, -1910)
+scroll_ignore_camera_zoom = true
+
+[node name="cave_background4" parent="backgrounds" instance=ExtResource("4_c36ih")]
+offset = Vector2(0, 955)
+transform = Transform2D(1, 0, 0, 1, 0, 955)
+scroll_ignore_camera_zoom = true
+
+[node name="cave_background5" parent="backgrounds" instance=ExtResource("4_c36ih")]
+offset = Vector2(0, 1910)
+transform = Transform2D(1, 0, 0, 1, 0, 1910)
+scroll_ignore_camera_zoom = true
+
+[node name="out_side_1" type="Area2D" parent="."]
+position = Vector2(1164.25, 346.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="out_side_1"]
+position = Vector2(-376, 20.625)
+shape = SubResource("RectangleShape2D_6lxkg")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="out_side_1"]
+z_index = 2
+position = Vector2(1380.13, 135.125)
+shape = SubResource("RectangleShape2D_ipypf")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="out_side_1"]
+z_index = 2
+position = Vector2(1478.5, 134.125)
+shape = SubResource("RectangleShape2D_7yd6n")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="out_side_1"]
+z_index = 2
+position = Vector2(1656.63, 228)
+shape = SubResource("RectangleShape2D_m87x0")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="out_side_1"]
+z_index = 2
+position = Vector2(1795.25, 69.375)
+shape = SubResource("RectangleShape2D_1my3u")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="out_side_1"]
+z_index = 3
+position = Vector2(3176.5, 249.5)
+shape = SubResource("RectangleShape2D_x11jn")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="out_side_1"]
+z_index = 3
+position = Vector2(158, -565)
+shape = SubResource("RectangleShape2D_kklxu")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="out_side_1"]
+z_index = 3
+position = Vector2(2851.25, -384)
+shape = SubResource("RectangleShape2D_1tlfo")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="out_side_1"]
+z_index = 3
+position = Vector2(3507, -384.25)
+shape = SubResource("RectangleShape2D_1tlfo")
+debug_color = Color(0.886275, 0.258824, 0.521569, 0.419608)
+
+[node name="Checkpoints" type="CanvasGroup" parent="."]
+
+[node name="checkpoint_1" parent="Checkpoints" instance=ExtResource("5_052yb")]
+position = Vector2(264.5, 166.5)
+
+[node name="checkpoint_2" parent="Checkpoints" instance=ExtResource("5_052yb")]
+position = Vector2(2578.5, 347)
+
+[node name="checkpoint_3" parent="Checkpoints" instance=ExtResource("5_052yb")]
+z_index = 2
+position = Vector2(3201, 554)
+
+[node name="checkpoint_4" parent="Checkpoints" instance=ExtResource("5_052yb")]
+position = Vector2(3857.5, 555)
+
+[node name="path_platform_1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_du06w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="path_platform_1"]
+position = Vector2(5239.75, 360)
+rotation = -1.5708
+loop = false
+
+[node name="moving_platform" parent="path_platform_1/PathFollow2D" instance=ExtResource("6_5tati")]
+z_index = 1
+rotation = 1.5708
+
+[node name="Animation_platform" type="AnimationPlayer" parent="path_platform_1/PathFollow2D"]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_ravwd")
+}
+
+[node name="detected_platform_start" type="Area2D" parent="."]
+position = Vector2(5165.5, 309)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detected_platform_start"]
+position = Vector2(73.625, -92.75)
+shape = SubResource("RectangleShape2D_l411t")
+debug_color = Color(0.415686, 0.596078, 0.278431, 0.419608)
+
+[node name="detected_platform_reset" type="Area2D" parent="."]
+position = Vector2(5048.75, 74.25)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detected_platform_reset"]
+position = Vector2(174.25, 276)
+shape = SubResource("RectangleShape2D_c3x64")
+debug_color = Color(0.415686, 0.596078, 0.278431, 0.419608)
+
+[node name="Obstacule_road" type="CanvasGroup" parent="."]
+
+[node name="path_platform_2" type="Path2D" parent="Obstacule_road"]
+z_index = 1
+curve = SubResource("Curve2D_pm0oc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacule_road/path_platform_2"]
+position = Vector2(2644.75, 381.75)
+rotation = 1.57843
+rotates = false
+loop = false
+
+[node name="moving_platform" parent="Obstacule_road/path_platform_2/PathFollow2D" instance=ExtResource("6_5tati")]
+rotation = -1.5708
+scale = Vector2(1.2, 1)
+
+[node name="path_platform_3" type="Path2D" parent="Obstacule_road"]
+z_index = 1
+position = Vector2(0.25, 5.75)
+curve = SubResource("Curve2D_jdc4n")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacule_road/path_platform_3"]
+position = Vector2(2585.5, 548)
+rotation = -0.00240963
+rotates = false
+loop = false
+
+[node name="moving_platform" parent="Obstacule_road/path_platform_3/PathFollow2D" instance=ExtResource("6_5tati")]
+
+[node name="moving_saw_blade" type="Path2D" parent="Obstacule_road"]
+position = Vector2(2643.25, 366.25)
+rotation = 1.57843
+curve = SubResource("Curve2D_3gyut")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacule_road/moving_saw_blade"]
+position = Vector2(-62.5726, -140.276)
+rotation = -0.00167221
+rotates = false
+loop = false
+
+[node name="moving_saw_blade" parent="Obstacule_road/moving_saw_blade/PathFollow2D" instance=ExtResource("7_dauv6")]
+
+[node name="moving_saw_blade2" type="Path2D" parent="Obstacule_road"]
+position = Vector2(2561.25, 315.25)
+rotation = 1.57843
+curve = SubResource("Curve2D_bql4g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacule_road/moving_saw_blade2"]
+position = Vector2(110.777, -258.853)
+rotation = -0.00167221
+progress = 152.752
+rotates = false
+loop = false
+
+[node name="moving_saw_blade" parent="Obstacule_road/moving_saw_blade2/PathFollow2D" instance=ExtResource("7_dauv6")]
+
+[node name="moving_saw_blade3" type="Path2D" parent="Obstacule_road"]
+position = Vector2(2598.5, 306)
+rotation = 1.57843
+curve = SubResource("Curve2D_bql4g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacule_road/moving_saw_blade3"]
+position = Vector2(110.777, -258.853)
+rotation = -0.00167221
+progress = 152.752
+rotates = false
+loop = false
+
+[node name="moving_saw_blade" parent="Obstacule_road/moving_saw_blade3/PathFollow2D" instance=ExtResource("7_dauv6")]
+
+[node name="Animation_obstacule" type="AnimationPlayer" parent="Obstacule_road"]
+speed_scale = 1.5
+libraries = {
+"": SubResource("AnimationLibrary_d8fhp")
+}
+
+[node name="detected_start_anim" type="Area2D" parent="Obstacule_road"]
+position = Vector2(2656, 398.25)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacule_road/detected_start_anim"]
+position = Vector2(-14.6875, -49.75)
+shape = SubResource("RectangleShape2D_1h8sv")
+debug_color = Color(0.356863, 0.603922, 0.388235, 0.419608)
+
+[node name="detected_finish_anim" type="Area2D" parent="Obstacule_road"]
+position = Vector2(3116.5, 491.75)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacule_road/detected_finish_anim"]
+position = Vector2(24.9063, 50.5)
+shape = SubResource("RectangleShape2D_b10ge")
+debug_color = Color(0.180392, 0.619608, 0.482353, 0.419608)
+
+[node name="moving_pillars_set_1" type="CanvasGroup" parent="."]
+z_index = 2
+
+[node name="moving_pillar_1" type="Path2D" parent="moving_pillars_set_1"]
+position = Vector2(11.75, 24.25)
+curve = ExtResource("8_vdm3k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_1/moving_pillar_1"]
+position = Vector2(4197.25, 324.75)
+rotation = 1.56855
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_1/moving_pillar_1/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = -1.57238
+collision_layer = 1
+
+[node name="moving_pillar_2" type="Path2D" parent="moving_pillars_set_1"]
+position = Vector2(89.25, 25)
+curve = ExtResource("8_vdm3k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_1/moving_pillar_2"]
+position = Vector2(4197.75, 395.5)
+rotation = 1.56457
+progress = 70.7518
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_1/moving_pillar_2/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = 1.5708
+
+[node name="moving_pillar_3" type="Path2D" parent="moving_pillars_set_1"]
+position = Vector2(173.5, 26.25)
+curve = ExtResource("8_vdm3k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_1/moving_pillar_3"]
+position = Vector2(4197.38, 342.42)
+rotation = 1.56409
+progress = 17.6879
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_1/moving_pillar_3/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = 1.5708
+
+[node name="moving_pillar_4" type="Path2D" parent="moving_pillars_set_1"]
+position = Vector2(256.25, 26.25)
+curve = ExtResource("8_vdm3k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_1/moving_pillar_4"]
+position = Vector2(4197.75, 395.5)
+rotation = 1.56583
+progress = 70.7518
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_1/moving_pillar_4/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = 1.5708
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="moving_pillars_set_1"]
+speed_scale = 3.0
+libraries = {
+"": SubResource("AnimationLibrary_s7w85")
+}
+
+[node name="moving_pillars_set_1" type="Area2D" parent="moving_pillars_set_1"]
+position = Vector2(4073, 471.25)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_pillars_set_1/moving_pillars_set_1"]
+position = Vector2(252.875, 66.5625)
+shape = SubResource("RectangleShape2D_b33mg")
+debug_color = Color(0, 0.643137, 0.32549, 0.419608)
+
+[node name="moving_pillars_set_2" type="CanvasGroup" parent="."]
+z_index = 2
+
+[node name="moving_pillar_5" type="Path2D" parent="moving_pillars_set_2"]
+position = Vector2(2553.75, 4137)
+rotation = -1.5708
+curve = ExtResource("10_swnn7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_2/moving_pillar_5"]
+position = Vector2(4192, 328.265)
+rotation = -1.5708
+progress = 203.004
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_2/moving_pillar_5/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = -1.5708
+scale = Vector2(0.7, 1.5)
+
+[node name="moving_pillar_6" type="Path2D" parent="moving_pillars_set_2"]
+position = Vector2(2474.25, 3992.25)
+rotation = -1.5708
+curve = ExtResource("10_swnn7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_2/moving_pillar_6"]
+position = Vector2(4192, 328.265)
+rotation = -1.5708
+progress = 203.004
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_2/moving_pillar_6/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = -1.5708
+scale = Vector2(0.7, 1.5)
+
+[node name="moving_pillar_7" type="Path2D" parent="moving_pillars_set_2"]
+position = Vector2(2518.25, 3903)
+rotation = -1.5708
+curve = ExtResource("10_swnn7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="moving_pillars_set_2/moving_pillar_7"]
+position = Vector2(4193.25, 125.265)
+rotation = -1.5708
+rotates = false
+loop = false
+
+[node name="moving_pillar" parent="moving_pillars_set_2/moving_pillar_7/PathFollow2D" instance=ExtResource("7_w3drr")]
+rotation = -1.5708
+scale = Vector2(0.7, 1.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="moving_pillars_set_2"]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_dir8i")
+}
+
+[node name="moving_pilllars_set_2" type="Area2D" parent="moving_pillars_set_2"]
+position = Vector2(2893.25, -376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="moving_pillars_set_2/moving_pilllars_set_2"]
+position = Vector2(47.375, 222.375)
+shape = SubResource("RectangleShape2D_macb8")
+debug_color = Color(0.32549, 0.607843, 0.411765, 0.419608)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+visible = false
+z_index = 7
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(4000.75, 539)
+shape = SubResource("CircleShape2D_t2vv1")
+
+[connection signal="body_entered" from="out_side_1" to="." method="_on_out_side_1_body_entered"]
+[connection signal="body_entered" from="Checkpoints/checkpoint_1" to="." method="_on_checkpoint_1_body_entered"]
+[connection signal="body_entered" from="Checkpoints/checkpoint_2" to="." method="_on_checkpoint_2_body_entered"]
+[connection signal="body_entered" from="Checkpoints/checkpoint_3" to="." method="_on_checkpoint_3_body_entered"]
+[connection signal="body_entered" from="Checkpoints/checkpoint_4" to="." method="_on_checkpoint_4_body_entered"]
+[connection signal="animation_finished" from="path_platform_1/PathFollow2D/Animation_platform" to="." method="_on_animation_platform_animation_finished"]
+[connection signal="animation_started" from="path_platform_1/PathFollow2D/Animation_platform" to="." method="_on_animation_platform_animation_started"]
+[connection signal="body_entered" from="detected_platform_start" to="." method="_on_detected_platform_start_body_entered"]
+[connection signal="body_entered" from="detected_platform_reset" to="." method="_on_detected_platform_reset_body_entered"]
+[connection signal="body_exited" from="detected_platform_reset" to="." method="_on_detected_platform_reset_body_exited"]
+[connection signal="body_entered" from="Obstacule_road/moving_saw_blade/PathFollow2D/moving_saw_blade" to="." method="_on_moving_saw_blade_body_entered"]
+[connection signal="body_entered" from="Obstacule_road/moving_saw_blade2/PathFollow2D/moving_saw_blade" to="." method="_on_moving_saw_blade_body_entered"]
+[connection signal="body_entered" from="Obstacule_road/moving_saw_blade3/PathFollow2D/moving_saw_blade" to="." method="_on_moving_saw_blade_body_entered"]
+[connection signal="body_entered" from="Obstacule_road/detected_start_anim" to="." method="_on_detected_start_anim_body_entered"]
+[connection signal="body_entered" from="Obstacule_road/detected_finish_anim" to="." method="_on_detected_finish_anim_body_entered"]
+[connection signal="body_exited" from="Obstacule_road/detected_finish_anim" to="." method="_on_detected_finish_anim_body_exited"]
+[connection signal="body_entered" from="moving_pillars_set_1/moving_pillars_set_1" to="." method="_on_moving_pillars_set_1_body_entered"]
+[connection signal="body_exited" from="moving_pillars_set_1/moving_pillars_set_1" to="." method="_on_moving_pillars_set_1_body_exited"]
+[connection signal="body_entered" from="moving_pillars_set_2/moving_pilllars_set_2" to="." method="_on_moving_pilllars_set_2_body_entered"]
+[connection signal="body_exited" from="moving_pillars_set_2/moving_pilllars_set_2" to="." method="_on_moving_pilllars_set_2_body_exited"]

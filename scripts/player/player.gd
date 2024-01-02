@@ -1,6 +1,16 @@
 extends CharacterBody2D
 
+signal health_points(health: int)
+
 @export var speed: float = 600.0
+@export var health: int = 3:
+	get:
+		return health
+	set(value):
+		health = value
+		SaveGame.game_data.HP = health
+		SaveGame.save_data()
+		emit_signal("health_points", health)
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -10,18 +20,25 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: Vector2 = Vector2.ZERO
+var leaved_floor: bool = false
 
 func _ready():
+	health = SaveGame.game_data.HP
 	animation_tree.active = true
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
+		if not leaved_floor:
+			$jump_out_of_time.start()
+			leaved_floor = true
 		velocity.y += gravity * delta
+	else:
+		leaved_floor = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	direction = Input.get_vector("left", "right", "up", "down")
 	if direction.x != 0 && state_machine.check_can_move():
 		velocity.x = direction.x * speed
 	else:

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://brn7ls1mhpl3a"]
+
+[ext_resource type="Texture2D" uid="uid://i4ossj3ou6x" path="res://assets/sprites/tiles/platform/mainlev_build.png" id="1_cd778"]
+[ext_resource type="Script" path="res://scripts/levels/objects/moving_platform.gd" id="1_ykdhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_minpi"]
+size = Vector2(48, 16)
+
+[node name="moving_platform" type="AnimatableBody2D"]
+script = ExtResource("1_ykdhy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cd778")
+region_enabled = true
+region_rect = Rect2(960, 192, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_minpi")

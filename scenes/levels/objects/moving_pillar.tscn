@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://xes6uhbdqx01"]
+
+[ext_resource type="Texture2D" uid="uid://kikh3k7nb7u5" path="res://assets/sprites/tiles/objects/pillar.png" id="1_5hwra"]
+[ext_resource type="Script" path="res://scripts/levels/objects/moving_platform.gd" id="1_fg7xt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjgt5"]
+size = Vector2(38, 206)
+
+[node name="moving_pillar" type="AnimatableBody2D"]
+scale = Vector2(1, 1.5)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_fg7xt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5hwra")
+region_rect = Rect2(880, 400, 32, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qjgt5")

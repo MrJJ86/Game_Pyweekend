@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo85q5ha0i5ca"]
+[gd_scene load_steps=7 format=3 uid="uid://bo85q5ha0i5ca"]
 
 [ext_resource type="Script" path="res://scripts/menu/start_menu.gd" id="1_0flo4"]
 [ext_resource type="Texture2D" uid="uid://bd8w08hn5rvch" path="res://assets/sprites/background/initial_background/titulo_prueba.png" id="2_vyelk"]
+[ext_resource type="StyleBox" uid="uid://dkm6huog247we" path="res://assets/gd_items/disable_outline_button.tres" id="3_if7xg"]
 [ext_resource type="PackedScene" uid="uid://chondrxie2hod" path="res://scenes/menu/bg_menu.tscn" id="3_qyi8d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qc7s6"]
@@ -53,18 +54,21 @@ alignment = 1
 [node name="bt_start" type="Button" parent="menu_container/bt_container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("3_if7xg")
 text = "JUGAR"
 flat = true
 
 [node name="bt_settings" type="Button" parent="menu_container/bt_container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("3_if7xg")
 text = "CONFIGURACIÓN"
 flat = true
 
 [node name="bt_exit" type="Button" parent="menu_container/bt_container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = ExtResource("3_if7xg")
 text = "SALIR"
 flat = true
 

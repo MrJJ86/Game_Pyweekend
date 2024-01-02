@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1pid6jg4dr4p"]
+
+[ext_resource type="Texture2D" uid="uid://dxnqfvehja3xd" path="res://assets/sprites/tiles/objects/saw_blade.png" id="1_hnt4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tmyr"]
+atlas = ExtResource("1_hnt4q")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fab6r"]
+atlas = ExtResource("1_hnt4q")
+region = Rect2(65, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu8hc"]
+atlas = ExtResource("1_hnt4q")
+region = Rect2(130, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gh17"]
+atlas = ExtResource("1_hnt4q")
+region = Rect2(195, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x4eh"]
+atlas = ExtResource("1_hnt4q")
+region = Rect2(260, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uorda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tmyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fab6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu8hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gh17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x4eh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u58sf"]
+radius = 32.249
+
+[node name="moving_saw_blade" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 16
+collision_mask = 16
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uorda")
+autoplay = "default"
+frame_progress = 0.198135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u58sf")

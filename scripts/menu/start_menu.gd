@@ -27,7 +27,7 @@ func _on_bt_exit_pressed():
 
 
 func _on_bt_settings_pressed():
-	game_manager.game_paused = true
+	game_manager.game_paused = [true,false]
 
 
 func _on_bt_start_pressed():
